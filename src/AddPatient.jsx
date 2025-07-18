@@ -68,7 +68,7 @@ const AddPatient = () => {
 
         <div className="form-group">
           <label>Address</label>
-          <textarea
+          <textarea  
             name="address"
             value={form.address}
             onChange={handleChange}

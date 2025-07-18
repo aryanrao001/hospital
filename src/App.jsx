@@ -14,7 +14,7 @@ import AddAppointment from './AddAppointment';
 import AppointmentList from './AppointmentList';
 
 import MedicationCheck from './MedicationCheck';
-import AddMedicine from './AddMedicine';
+import AddMedicine from './AddMedicine';    
 import MedicineList from './MedicineList';
 
 // ✅ Prescription Page import
