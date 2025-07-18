@@ -31,7 +31,7 @@ const AddPatient = () => {
     try {
       const res = await axios.post('http://localhost:5000/api/patients/add', form);
       console.log("✅ Patient saved:", res.data);
-      alert("Patient added successfully");
+      alert("  Patient added successfully");
       handleReset();
     } catch (err) {
       console.error("❌ Error saving patient:", err);
@@ -115,9 +115,11 @@ const AddPatient = () => {
 
         <div className="form-buttons">
           <button type="button" className="btn reset" onClick={handleReset}>
+            
             Reset
           </button>
           <button type="submit" className="btn save">
+            
             Save
           </button>
         </div>
