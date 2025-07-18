@@ -13,9 +13,12 @@ import PatientList from './PatientList';
 import AddAppointment from './AddAppointment';
 import AppointmentList from './AppointmentList';
 
-import MedicationCheck from './MedicationCheck';
+import MedicationCheck from './MedicationCheck' ;
 import AddMedicine from './AddMedicine';    
 import MedicineList from './MedicineList';
+
+
+
 
 // ✅ Prescription Page import
 import Prescription from "./Prescription";
