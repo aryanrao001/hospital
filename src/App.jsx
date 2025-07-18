@@ -5,7 +5,12 @@ import Login from './Login';
 import Register from './Register';
 
 import DashboardLayout from './DashboardLayout'; 
-import Dashboard from './Dashboard';
+import Dashboard from './Dashboard'; 
+ 
+ 
+ 
+ 
+
 
 import AddPatient from './AddPatient';
 import PatientList from './PatientList';
