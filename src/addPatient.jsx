@@ -96,9 +96,9 @@ const AddPatient = () => {
                 name="status"
                 value="active"
                 checked={form.status === 'active'}
-                onChange={handleChange}
-              />
-              Active
+                onChange={handleChange}   
+              />      
+              Active     
             </label>
             <label>
               <input
