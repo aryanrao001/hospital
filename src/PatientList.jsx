@@ -14,6 +14,8 @@ const PatientList = () => {
     status: '',
     address: ''
   });       
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
   const role = localStorage.getItem('role');
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const PatientList = () => {
          
   const fetchPatients = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/patients');
+      const res = await axios.get(`${backendUrl}/api/patients`);
       setPatients(res.data);    
 
     } catch (err) {             
@@ -35,7 +37,7 @@ const PatientList = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Delete this patient?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/patients/${id}`);
+        await axios.delete(`${backendUrl}/api/patients/${id}`);
         fetchPatients();
       } catch (err) {
         console.error('Delete failed:', err);
@@ -61,7 +63,7 @@ const PatientList = () => {
 
   const handlePatientUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/patients/${editPatient}`, editFormData);
+      await axios.put(`${backendUrl}/api/patients/${editPatient}`, editFormData);
       setEditPatient(null);
       fetchPatients();
     } catch (err) {

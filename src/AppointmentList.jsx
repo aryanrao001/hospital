@@ -12,13 +12,15 @@ const AppointmentList = () => {
     problem: '',
     status: 'active'
   });
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
   useEffect(() => {
     fetchAppointments();
   }, []);
 
   const fetchAppointments = async () => {
-    const res = await fetch('http://localhost:5000/api/appointments');
+    const res = await fetch(`${backendUrl}/api/appointments`);
     const data = await res.json();
     setAppointments(data);
   };

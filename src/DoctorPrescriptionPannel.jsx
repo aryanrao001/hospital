@@ -8,6 +8,9 @@ const DoctorPrescriptionPanel = () => {
   const [allMedicines, setAllMedicines] = useState([]);
   const [allTests, setAllTests] = useState([]);
   const [prescription, setPrescription] = useState({});
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
 
   useEffect(() => {
     fetchPatients();
@@ -15,13 +18,13 @@ const DoctorPrescriptionPanel = () => {
   }, []);
 
   const fetchPatients = async () => {
-    const res = await axios.get('http://localhost:5000/api/patients');
+    const res = await axios.get(`${backendUrl}/api/patients`);
     setPatients(res.data);
   };
 
   const fetchMasterData = async () => {
-    const medRes = await axios.get('http://localhost:5000/api/medicines');
-    const testRes = await axios.get('http://localhost:5000/api/tests');
+    const medRes = await axios.get(`${backendUrl}/api/medicines`);
+    const testRes = await axios.get(`${backendUrl}/api/tests`);
     setAllMedicines(medRes.data);
     setAllTests(testRes.data);
   };
@@ -75,7 +78,7 @@ const DoctorPrescriptionPanel = () => {
     };
 
     try {
-      await axios.put(`http://localhost:5000/api/patients/${selectedPatientId}`, finalData);
+      await axios.put(`${backendUrl}/api/patients/${selectedPatientId}`, finalData);
       alert("Prescription Saved ✅");
       setSelectedPatientId(null);
       setPrescription({});

@@ -10,11 +10,13 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [msg, setMsg] = useState('');
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/auth/register', {
+      await axios.post(`${backendUrl}/api/auth/register`, {
         name,
         email,
         password,

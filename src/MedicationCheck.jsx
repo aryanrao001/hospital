@@ -6,10 +6,12 @@ const MedicationCheck = () => {
   const [phone, setPhone] = useState('');
   const [patient, setPatient] = useState(null);
   const [error, setError] = useState('');
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
   const fetchMedicines = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/patients`);
+      const res = await axios.get(`${backendUrl}/api/patients`);
       const match = res.data.find((p) => p.phone === phone.trim());
 
       if (match) {

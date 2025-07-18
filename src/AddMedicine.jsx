@@ -4,6 +4,9 @@ import { FaPlus, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
 
 // ...imports
+
+// const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 const AddMedicine = () => {
   const [disease, setDisease] = useState('');
   const [medicines, setMedicines] = useState([
@@ -19,6 +22,8 @@ const AddMedicine = () => {
       days: '1'
     }
   ]);
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
   const handleChange = (index, e) => {
     const { name, value, type, checked } = e.target;
@@ -69,7 +74,7 @@ const AddMedicine = () => {
         disease
       }));
 
-      await axios.post('http://localhost:5000/api/medicines/add', payload);
+      await axios.post(`${backendUrl}/api/medicines/add`, payload);
       alert('✅ Medicines saved successfully!');
 
       setDisease('');

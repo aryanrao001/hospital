@@ -7,11 +7,14 @@ const Dashboard = () => {
   const [patientCount, setPatientCount] = useState(0);
   const [appointmentCount, setAppointmentCount] = useState(0);
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const resPatients = await axios.get('http://localhost:5000/api/patients/count');
-        const resAppointments = await axios.get('http://localhost:5000/api/appointments/count');
+        const resPatients = await axios.get(`${backendUrl}/api/patients/count`);
+        const resAppointments = await axios.get(`${backendUrl}/api/appointments/count`);
         setPatientCount(resPatients.data.count);
         setAppointmentCount(resAppointments.data.count);
       } catch (error) {

@@ -14,7 +14,7 @@ const defaultTestList = [
   "Urine Test",
   "Lipid Profile",
   "Thyroid Panel"
-  
+
 ];
 
 const initializeDose = () => ({
@@ -36,11 +36,13 @@ const Prescription = () => {
   const [testList, setTestList] = useState(
     defaultTestList.map((name) => ({ testName: name, required: false }))
   );
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
   const selectedPatient = patients?.find(p => p._id === popupPatientId);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/medicines")
+    axios.get(`${backendUrl}/api/medicines`)
       .then(res => {
         const allDiseases = [...new Set(res.data.map(m => m.disease.toLowerCase()))];
         setDiseases(allDiseases);
@@ -50,7 +52,7 @@ const Prescription = () => {
 
   useEffect(() => {
     if (selectedDisease) {
-      axios.get(`http://localhost:5000/api/medicines?disease=${selectedDisease}`)
+      axios.get(`${backendUrl}/api/medicines?disease=${selectedDisease}`)
         .then(res => {
           const meds = Array.isArray(res.data) ? res.data : [res.data];
           const editable = meds.map(med => ({
@@ -110,7 +112,7 @@ const Prescription = () => {
     }));
 
     try {
-      await axios.put(`http://localhost:5000/api/patients/${selectedPatient._id}`, {
+      await axios.put(`${backendUrl}/api/patients/${selectedPatient._id}`, {
         medicineList: formattedMeds,
         testList: formattedTests
       });

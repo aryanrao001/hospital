@@ -11,6 +11,9 @@ const AddPatient = () => {
     status: 'active',
   });
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -29,7 +32,7 @@ const AddPatient = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/patients/add', form);
+      const res = await axios.post(`${backendUrl}/api/patients/add`, form);
       console.log("✅ Patient saved:", res.data);
       alert("  Patient added successfully");
       handleReset();

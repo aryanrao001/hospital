@@ -18,10 +18,12 @@ const MedicineList = () => {
       night: { bf: false, af: false }
     }
   });
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
   const fetchMedicines = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/medicines');
+      const res = await axios.get(`${backendUrl}/api/medicines`);
       const grouped = {};
       res.data.forEach(med => {
         if (!grouped[med.disease]) grouped[med.disease] = [];
@@ -36,7 +38,7 @@ const MedicineList = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this medicine?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/medicines/${id}`);
+      await axios.delete(`${backendUrl}/api/medicines/${id}`);
       fetchMedicines();
     } catch (err) {
       console.error('Error deleting medicine:', err);
@@ -66,7 +68,7 @@ const MedicineList = () => {
 
   const saveEdit = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/medicines/${editingMedicine}`, editData);
+      await axios.put(`${backendUrl}/api/medicines/${editingMedicine}`, editData);
       setEditingMedicine(null);
       fetchMedicines();
     } catch (err) {
