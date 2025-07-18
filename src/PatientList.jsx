@@ -26,9 +26,9 @@ const PatientList = () => {
     try {
       const res = await axios.get('http://localhost:5000/api/patients');
       setPatients(res.data);    
-      
+
     } catch (err) {             
-      console.error('Failed to fetch patients:', err);
+      console.error('Failed to fetch  patient :', err);
     }
   };
 
