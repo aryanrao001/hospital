@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './medicineList.css';
+import './MedicineList.css';
 import axios from 'axios';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 

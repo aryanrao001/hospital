@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Dashboard.css';
+import './dashboard.css';
 import { FaUserInjured, FaCalendarCheck } from 'react-icons/fa';
 import axios from 'axios';
 

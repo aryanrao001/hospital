@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Sidebar.css';
+import './sidebar.css';
 import hospitalLogo from './assets/hospital.png';
 import {
   FaTachometerAlt, FaUsers, FaPlus, FaList,
