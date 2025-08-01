@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 
 const MedicineList = () => {
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
   const [groupedMedicines, setGroupedMedicines] = useState({});
   const [editingMedicine, setEditingMedicine] = useState(null);
   const [editData, setEditData] = useState({
@@ -21,7 +22,7 @@ const MedicineList = () => {
 
   const fetchMedicines = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/medicines');
+      const res = await axios.get(`${BACKEND_URL}/api/medicines`);
       const grouped = {};
       res.data.forEach(med => {
         if (!grouped[med.disease]) grouped[med.disease] = [];
@@ -36,7 +37,7 @@ const MedicineList = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this medicine?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/medicines/${id}`);
+      await axios.delete(`${BACKEND_URL}/api/medicines/${id}`);
       fetchMedicines();
     } catch (err) {
       console.error('Error deleting medicine:', err);
@@ -66,7 +67,7 @@ const MedicineList = () => {
 
   const saveEdit = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/medicines/${editingMedicine}`, editData);
+      await axios.put(`${BACKEND_URL}/api/medicines/${editingMedicine}`, editData);
       setEditingMedicine(null);
       fetchMedicines();
     } catch (err) {

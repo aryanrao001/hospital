@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './AppointmentList.css';
 
 const AppointmentList = () => {
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
   const [appointments, setAppointments] = useState([]);
   const [editId, setEditId] = useState(null);
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const AppointmentList = () => {
   }, []);
 
   const fetchAppointments = async () => {
-    const res = await fetch('http://localhost:5000/api/appointments');
+    const res = await fetch(`${BACKEND_URL}/api/appointments`);
     const data = await res.json();
     setAppointments(data);
   };

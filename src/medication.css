@@ -125,4 +125,125 @@
   text-align: left;
 }
 
+.prescription-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: white;
+  color: black;
+}
+
+.prescription-header {
+  text-align: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.prescription-header h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.prescription-header p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.border {
+  border: 1px solid #333;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.vitals-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.vitals-grid div {
+  flex: 1 1 150px;
+}
+
+.vitals-grid input {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.medicine-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.medicine-row input {
+  flex: 1;
+  padding: 5px;
+}
+
+.test-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.test-list label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.add-btn {
+  background: #007BFF;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.submit-btn, .print-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+.print-btn {
+  background: #6c757d;
+}
+
+@media print {
+  .add-btn, .submit-btn, .print-btn {
+    display: none;
+  }
+
+  .prescription-container {
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  body {
+    background: white;
+  }
+}
+
+
 

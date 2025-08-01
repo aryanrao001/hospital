@@ -4,14 +4,15 @@ import { FaUserInjured, FaCalendarCheck } from 'react-icons/fa';
 import axios from 'axios';
 
 const Dashboard = () => {
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
   const [patientCount, setPatientCount] = useState(0);
   const [appointmentCount, setAppointmentCount] = useState(0);
 
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const resPatients = await axios.get('http://localhost:5000/api/patients/count');
-        const resAppointments = await axios.get('http://localhost:5000/api/appointments/count');
+        const resPatients = await axios.get(`${BACKEND_URL}/api/patients/count`);
+        const resAppointments = await axios.get(`${BACKEND_URL}/api/appointments/count`);
         setPatientCount(resPatients.data.count);
         setAppointmentCount(resAppointments.data.count);
       } catch (error) {

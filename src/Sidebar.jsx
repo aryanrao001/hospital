@@ -87,20 +87,18 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </li>
         )}
 
-        {(role === 'doctor' || role === 'receptionist') && (
+        {role === 'receptionist' && (
           <li>
             <div className="item toggle" onClick={() => setOpenAppointment(!openAppointment)}>
               {renderItem(<FaCalendarPlus />, 'Appointment', <FaChevronDown className={`chevron ${openAppointment ? 'rotated' : ''}`} />)}
             </div>
             {isOpen && openAppointment && (
               <ul className="sub-menu">
-                {role === 'receptionist' && (
-                  <li>
-                    <NavLink to="/dashboard/add-appointment" className="item" onClick={handleItemClick}>
-                      {renderItem(<FaPlus />, 'Add Appointment')}
-                    </NavLink>
-                  </li>
-                )}
+                <li>
+                  <NavLink to="/dashboard/add-appointment" className="item" onClick={handleItemClick}>
+                    {renderItem(<FaPlus />, 'Add Appointment')}
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink to="/dashboard/appointment-list" className="item" onClick={handleItemClick}>
                     {renderItem(<FaClipboardList />, 'Appointment List')}
@@ -140,14 +138,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </>
         )}
 
-        {/* ✅ Added below: Prescription Form for Doctor */}
-        {role === 'doctor' && (
-          <li>
-            <NavLink to="/dashboard/prescription-form" className="item" onClick={handleItemClick}>
-              {renderItem(<FaFileAlt />, 'Prescription Form')}
-            </NavLink>
-          </li>
-        )}
+        {/* ❌ Removed Prescription Form for doctor */}
 
         <li className="bottom">
           <button className="logout" onClick={() => {

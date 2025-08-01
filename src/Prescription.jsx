@@ -24,6 +24,7 @@ const initializeDose = () => ({
 });
 
 const Prescription = () => {
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -39,7 +40,7 @@ const Prescription = () => {
   const selectedPatient = patients?.find(p => p._id === popupPatientId);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/medicines")
+    axios.get(`${BACKEND_URL}/api/medicines`)
       .then(res => {
         const allDiseases = [...new Set(res.data.map(m => m.disease.toLowerCase()))];
         setDiseases(allDiseases);
@@ -49,7 +50,7 @@ const Prescription = () => {
 
   useEffect(() => {
     if (selectedDisease) {
-      axios.get(`http://localhost:5000/api/medicines?disease=${selectedDisease}`)
+      axios.get(`${BACKEND_URL}/api/medicines?disease=${selectedDisease}`)
         .then(res => {
           const meds = Array.isArray(res.data) ? res.data : [res.data];
           const editable = meds.map(med => ({
@@ -109,7 +110,7 @@ const Prescription = () => {
     }));
 
     try {
-      await axios.put(`http://localhost:5000/api/patients/${selectedPatient._id}`, {
+      await axios.put(`${BACKEND_URL}/api/patients/${selectedPatient._id}`, {
         medicineList: formattedMeds,
         testList: formattedTests
       });
@@ -135,7 +136,13 @@ const Prescription = () => {
         <p><strong>Phone:</strong> {selectedPatient.phone}</p>
         <p><strong>Gender:</strong> {selectedPatient.gender}</p>
         <p><strong>Address:</strong> {selectedPatient.address}</p>
+        <p><strong>Weight:</strong> {selectedPatient.weight}</p>
+        <p><strong>BP:</strong> {selectedPatient.bp}</p>
+        <p><strong>Temperature:</strong> {selectedPatient.temperature}</p>
+        <p><strong>SPO2:</strong> {selectedPatient.spo2}</p>
+        <p><strong>Blood Sugar:</strong> {selectedPatient.bloodSugar}</p>
       </div>
+
 
       <div>
         <label><strong>Select Disease:</strong></label>
@@ -233,19 +240,19 @@ const Prescription = () => {
           </table>
         </>
       )}
-<h4>🧪 Common Tests</h4>
-<div className="test-checkbox-group">
-  {testList.map((t, idx) => (
-    <label key={idx} className="test-checkbox">
-      <input
-        type="checkbox"
-        checked={t.required}
-        onChange={(e) => handleTestCheckboxChange(idx, e.target.checked)}
-      />
-      {t.testName}
-    </label>
-  ))}
-</div>
+      <h4>🧪 Common Tests</h4>
+      <div className="test-checkbox-group">
+        {testList.map((t, idx) => (
+          <label key={idx} className="test-checkbox">
+            <input
+              type="checkbox"
+              checked={t.required}
+              onChange={(e) => handleTestCheckboxChange(idx, e.target.checked)}
+            />
+            {t.testName}
+          </label>
+        ))}
+      </div>
 
 
       <div className="action-buttons">

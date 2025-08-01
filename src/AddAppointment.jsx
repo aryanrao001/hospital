@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './AddAppointment.css';
 
 const AddAppointment = () => {
+   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
   const [form, setForm] = useState({
     patient: '',         // ✅ Changed from patientName
     doctor: '',
@@ -30,7 +31,7 @@ const AddAppointment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/appointments/add', {
+      const res = await fetch(`${BACKEND_URL}/api/appointments/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
